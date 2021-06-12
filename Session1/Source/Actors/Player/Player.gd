@@ -29,6 +29,8 @@ func move_state(delta):
 	var input_vector = Vector2.ZERO
 	# separate into x and y
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
 	
 	# call a math function to make it nicer aka "normalize" 1
 	input_vector = input_vector.normalized()
