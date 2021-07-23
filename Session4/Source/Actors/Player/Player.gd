@@ -1,10 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2.ZERO
-var roll_vector = Vector2.ZERO
-var input_vector = Vector2.ZERO
 
-export var ROLL_SPEED = 120
 # How fast can we go?
 export var MAX_SPEED = 80
 
@@ -13,6 +10,12 @@ export var FRICTION = 500
 
 # How fast we speed up?
 export var ACCELERATION = 500
+
+export var ROLL_SPEED = 120
+
+# calculate input speed
+var input_vector = Vector2.ZERO
+var roll_vector = Vector2.ZERO
 
 # This is how we check what to animate?
 enum {
@@ -34,21 +37,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	match state:
 		MOVE:
 			# Moving
-			move_state(delta)
+			move_state(delta)		
 		ROLL:
 			roll_state()
 		
 		ATTACK:
-			attack_state()	
+			attack_state()
 
 # decide how we move?
 func move_state(delta):
-	# calculate input speed
-	
+
 	# separate into x and y
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -78,6 +79,7 @@ func move_state(delta):
 	# We calculated, now move!
 	move()
 	
+	# DID WE CHANGE INPUT??
 	if (Input.is_action_just_pressed("attack")):
 		state = ATTACK
 	
@@ -87,12 +89,11 @@ func move_state(delta):
 # actually move
 func move():
 	velocity = move_and_slide(velocity)
-
+	
 func attack_state():
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
-	move()
-	
+
 func attack_animation_finished():
 	state = MOVE
 
@@ -100,7 +101,7 @@ func roll_state():
 	velocity = input_vector * ROLL_SPEED
 	animationState.travel("Roll")
 	move()
-	
+
 func roll_animation_finished():
 	velocity = velocity * 0.8
 	state = MOVE
