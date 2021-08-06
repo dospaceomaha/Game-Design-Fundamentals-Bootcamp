@@ -13,8 +13,13 @@ func _ready():
 	pass # Replace with function body.
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
 func _on_Hurtbox_area_entered(area):
 	# Animate grass destruction
 	create_grass_effect()
-	# Delete this object
+	# Delete the grass object
 	queue_free()
