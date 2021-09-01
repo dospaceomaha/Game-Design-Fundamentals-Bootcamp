@@ -58,12 +58,13 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
 animation = "Animated"
-frame = 3
+frame = 1
 playing = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 2 )]
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+visible = false
 scale = Vector2( 4.32619, 5.23339 )
 shape = SubResource( 8 )
 
