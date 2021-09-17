@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Source/Generics/PlayButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Source/Generics/QuitButton.tscn" type="PackedScene" id=2]
+
+[node name="MainMenuScreen" type="CanvasLayer"]
+
+[node name="PlayButton" parent="." instance=ExtResource( 1 )]
+margin_left = 121.428
+margin_top = 102.915
+margin_right = 188.428
+margin_bottom = 122.915
+text = "Play"
+
+[node name="QuitButton" parent="." instance=ExtResource( 2 )]
+margin_left = 121.417
+margin_top = 129.294
+margin_right = 188.417
+margin_bottom = 149.294
+text = "Quit"
